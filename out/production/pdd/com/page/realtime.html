@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+      <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main1" style="width: 600px;height:400px; float:left"></div>
+    <div id="main2" style="width: 600px;height:400px;float:left"></div>
+    <div id="main3" style="width: 600px;height:400px;float:left"></div>
+
+    <div id="warn1" style="width: 600px;height:400px;float:left">告警1</div>
+    <div id="warn2" style="width: 600px;height:400px;float:left">告警2</div>
+    <div id="warn3" style="width: 600px;height:400px;float:left">告警3</div>
+
+
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart1 = echarts.init(document.getElementById('main1'));
+      var xdata = ['60', '55', '50', '45','40', '35', '30', '25', '20', '15', '10', '05', '00'];
+      var ydata1 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+      var ydata2 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+      option = {
+        title: {
+          text: 'CPU'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            animation: false
+          }
+        },
+
+        xAxis: {
+          type: 'category',
+          data: xdata
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: ydata1,
+            type: 'line'
+          },
+          {
+            data: ydata2,
+            type: 'line'
+          }
+        ]
+      };
+
+      myChart1.setOption(option);
+      var num1 = 0;
+      var num2 = 0;
+      setInterval(function() {
+        $.ajaxSettings.async=false;
+        $.getJSON("package.json", function (d) {
+          if (num1 < d.length - 1){
+            ydata1.shift();
+            ydata1.push(d[num1++]["value1"]);
+            ydata2.shift();
+            ydata2.push(d[num2++]["value2"]);
+          }
+        });
+        var result1 = 0;
+        for (var i = 0;i < ydata1.length;i++){
+          result1 += ydata1[i];
+        }
+        console.log(result1 / ydata1.length);
+        if (result1 / ydata1.length > 0.5){
+          alert("出现警告");
+        }
+
+        myChart1.setOption({
+          series: [
+            {
+              data: ydata1
+            },
+            {
+              data: ydata2
+            },
+
+          ]
+        });
+      }, 3000);
+    </script>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart2 = echarts.init(document.getElementById('main2'));
+      var xdata = ['60', '55', '50', '45','40', '35', '30', '25', '20', '15', '10', '05', '00'];
+      var ydata1 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+      var ydata2 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+      option = {
+        title: {
+          text: '内存'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            animation: false
+          }
+        },
+
+        xAxis: {
+          type: 'category',
+          data: xdata
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: ydata1,
+            type: 'line'
+          },
+          {
+            data: ydata2,
+            type: 'line'
+          }
+        ]
+      };
+
+      myChart2.setOption(option);
+      var num1 = 0;
+      var num2 = 0;
+      setInterval(function() {
+        $.ajaxSettings.async=false;
+        $.getJSON("package.json", function (d) {
+          if (num1 < d.length - 1){
+            ydata1.shift();
+            ydata1.push(d[num1++]["value1"]);
+            ydata2.shift();
+            ydata2.push(d[num2++]["value2"]);
+          }
+        });
+
+        myChart2.setOption({
+          series: [
+            {
+              data: ydata1
+            },
+            {
+              data: ydata2
+            },
+
+          ]
+        });
+      }, 3000);
+    </script>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart3 = echarts.init(document.getElementById('main3'));
+      var xdata = ['60', '55', '50', '45','40', '35', '30', '25', '20', '15', '10', '05', '00'];
+      var ydata1 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+      var ydata2 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+      option = {
+        title: {
+          text: '时间消耗'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            animation: false
+          }
+        },
+
+        xAxis: {
+          type: 'category',
+          data: xdata
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: ydata1,
+            type: 'line'
+          },
+          {
+            data: ydata2,
+            type: 'line'
+          }
+        ]
+      };
+
+      myChart3.setOption(option);
+      var num1 = 0;
+      var num2 = 0;
+      setInterval(function() {
+        $.ajaxSettings.async=false;
+        $.getJSON("package.json", function (d) {
+          if (num1 < d.length - 1){
+            ydata1.shift();
+            ydata1.push(d[num1++]["value1"]);
+            ydata2.shift();
+            ydata2.push(d[num2++]["value2"]);
+          }
+        });
+
+        myChart3.setOption({
+          series: [
+            {
+              data: ydata1
+            },
+            {
+              data: ydata2
+            },
+
+          ]
+        });
+      }, 3000);
+    </script>
+
+  </body>
+</html>

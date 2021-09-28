@@ -1,0 +1,25 @@
+////载入基础案件的统计图表
+function loadCloseCaseChart(closeCaseOrganizationNameArray,closeCaseOrganizationDataArray) {
+closeCaseChart.setOption({ title :
+{ text: '【各部门已破案件数量】',
+x:'center',
+textStyle: { fontWeight: 'normal', //标题颜色 color: '#5cccd3' } },
+tooltip : { trigger: 'item', formatter: "{a} <br/>{b} : {c}" },
+toolbox: { show : false, feature : { mark : {show: true},
+dataView : {show: true, readOnly: false},
+restore : {show: true},
+saveAsImage : {show: true} } },
+// legend: { // data : ['展现','点击','访问','咨询','订单']
+// },
+calculable : true,
+series : [ { name:'破案数量', type:'funnel', width: '60%',
+left: '10%', top: 60, //x2: 80, bottom: 5,
+itemStyle: { normal: { color: function(params) { // build a color map as your need.
+var colorList = [ '#bb3422','#1e6786','#a0dbcd','#e5e891','#159dbd' ];
+return colorList[params.dataIndex] } } }, data:[ {value:closeCaseOrganizationDataArray[4],
+name:closeCaseOrganizationNameArray[4]}, {value:closeCaseOrganizationDataArray[3],
+name:closeCaseOrganizationNameArray[3]}, {value:closeCaseOrganizationDataArray[2],
+name:closeCaseOrganizationNameArray[2]}, {value:closeCaseOrganizationDataArray[1],
+name:closeCaseOrganizationNameArray[1]}, {value:closeCaseOrganizationDataArray[0],
+name:closeCaseOrganizationNameArray[0]} ] } ] }); }
+刚才那个是ICHAR的图，这个是ECHAR的图，通过建一个function 把ajxa返回的josn传到function 里面就好了
