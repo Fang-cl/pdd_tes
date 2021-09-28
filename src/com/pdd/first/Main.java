@@ -1,6 +1,7 @@
 package com.pdd.first;
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,19 +12,28 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String[] s = scanner.nextLine().split(" ");
-        int N = Integer.parseInt(s[0]);
-        int X = Integer.parseInt(s[1]);
-        int K = Integer.parseInt(s[2]);
+        int n = Integer.parseInt(s[0]);
+        int m = Integer.parseInt(s[1]);
+        int x = Integer.parseInt(s[2]);
 
-        for (int i = 0;i < K;i++){
-            String[] s1 = scanner.nextLine().split(" ");
-            int first = Integer.parseInt(s1[0]);
-            int second = Integer.parseInt(s1[1]);
-            if (X == first) X = second;
-            else if (X == second) X = first;
+        String[] s1 = scanner.nextLine().split(" ");
+        int[] arr = Arrays.stream(s1).mapToInt(Integer::parseInt).toArray();
+        String[] s2 = scanner.nextLine().split(" ");
+        int[] arr1 = Arrays.stream(s2).mapToInt(Integer::parseInt).toArray();
+        int max = 0;
+        int pre = arr[0];
+        for (int i = 1;i < arr.length;i++){
+            int h = arr[i] - pre;
+            if (h < x && h > max){
+                max = h;
+                pre = i;
+            }
         }
-        System.out.println(X);
-
+        for (int i = 0;i < arr1.length;i++){
+            if (arr1[i] > max){
+                System.out.print(i+1 + " ");
+            }
+        }
     }
 
 }
