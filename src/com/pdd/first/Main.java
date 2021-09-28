@@ -20,15 +20,35 @@ public class Main {
         int[] arr = Arrays.stream(s1).mapToInt(Integer::parseInt).toArray();
         String[] s2 = scanner.nextLine().split(" ");
         int[] arr1 = Arrays.stream(s2).mapToInt(Integer::parseInt).toArray();
+        if (n == 1){
+            for (int i = 0;i < arr1.length;i++){
+                    System.out.print(i+1 + " ");
+            }
+            return ;
+        }
         int max = 0;
         int pre = arr[0];
+        int h = 0;
         for (int i = 1;i < arr.length;i++){
-            int h = arr[i] - pre;
+            h = arr[i] - pre;
             if (h < x && h > max){
                 max = h;
                 pre = i;
             }
         }
+        pre = arr[arr.length-1];
+        for (int i = arr.length-2;i >= 0;i--){
+            h = arr[i] - pre;
+            if (h < x && h > max){
+                max = h;
+                pre = i;
+            }
+        }
+        h = Math.abs(arr[0] - arr[arr.length - 1]);
+        if (h < x && h > max){
+            max = h;
+        }
+
         for (int i = 0;i < arr1.length;i++){
             if (arr1[i] > max){
                 System.out.print(i+1 + " ");
