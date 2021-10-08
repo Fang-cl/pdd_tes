@@ -7,9 +7,27 @@ import java.util.Scanner;
  * @create 2021/8/22 20:35
  */
 public class Main1 {
-    static int i;
     public static void main(String[] args) {
-        System.out.println("测试 拉取代码");
+        Parent p = new child();
+        p.print();
+
     }
 
+
+
+}
+class Parent{
+    int num = 1;
+    void print(){
+        System.out.println("fu");
+    }
+}
+class child extends Parent{
+    int num = 2;
+    void print(){
+        System.out.println("child");
+    }
+    void otherPrint(){
+        System.out.println("1");
+    }
 }
