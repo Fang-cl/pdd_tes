@@ -1,6 +1,5 @@
 package com.pdd.three;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -9,43 +8,29 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(getDays(1998, 8, 21));
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        int[] param = str2Arr(s);
+        int num = Integer.parseInt(scanner.nextLine());
+        String[] gz = new String[num];
+        for (int i = 0;i < num;i++){
+            gz[i] = scanner.nextLine();
+        }
+
+
+
+
+
+
     }
 
-    public static int getDays(int year, int month, int day){
-        int result = 0;
-        int temp = 0;
-        for (int i = 1;i < month;i++){
-            switch (i){
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:{
-                    temp = 31;
-                    break;
-                }
-                case 4:
-                case 6:
-                case 9:
-                case 11:{
-                    temp = 30;
-                    break;
-                }
-                case 2:{
-                    if ((year % 100 !=0 &&year % 4 == 0) || (year % 100 == 0 && year%400==0)) {
-                        temp = 29;
-                    } else {
-                        temp = 28;
-                    }
-                }
-                default:{
-                    break;
-                }
-            }
-            result += temp;
+    public static int[] str2Arr(String s){
+        String[] split = s.substring(0, s.length() - 1).split(",");
+        int[] arr = new int[split.length];
+        for (int i = 0;i < arr.length;i++){
+            arr[i] = Integer.parseInt(split[i]);
         }
-        return result + day;
+        return arr;
     }
+
 }

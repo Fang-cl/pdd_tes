@@ -1,8 +1,6 @@
 package com.pdd.second;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @Author Fang
@@ -11,20 +9,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(jc(20));
+
+        int i = 11;
+        int j = 1;
+
+        System.out.println(String.valueOf(i).contains("0"));
+        String s = String.valueOf(i);
+
+
 
     }
-    public static String jc(int n){
-        BigDecimal bigDecimal = new BigDecimal(1);
-        BigDecimal result = new BigDecimal(0);
-        for (int i = 1;i <=n;i++){
-            bigDecimal = bigDecimal.multiply(new BigDecimal(i));
-            result = result.add(bigDecimal);
-        }
-
-        return result.toString();
-    }
-
 
 }
 

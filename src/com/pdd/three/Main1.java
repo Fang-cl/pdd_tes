@@ -6,6 +6,7 @@ package com.pdd.three;
  */
 public class Main1 {
     public static void main(String[] args) {
-        System.out.println("tree main test");
+        String s = "fang";
+        System.out.println(s.substring(1, s.length()-1));
     }
 }
